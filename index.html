@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GateLog - Elite Campus Parcel Tracking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/db.js"></script>
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-box glass-panel">
+            <div class="text-center mb-3">
+                <h1 class="nav-brand">Gate<span>Log</span></h1>
+                <p class="golden-text mt-1" style="font-size: 0.9rem;">Campus Parcel Tracking</p>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div id="login-section">
+                <form id="login-form">
+                    <div id="login-error" class="alert alert-error hidden"></div>
+                    <div id="login-success" class="alert alert-success hidden"></div>
+                    
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" id="login-phone" class="form-control" required placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" class="form-control" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn-primary mt-2">Sign In</button>
+                </form>
+                <div class="text-center mt-3">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" class="golden-text" style="text-decoration: none;">Create one</a></p>
+                </div>
+            </div>
+
+            <!-- REGISTRATION FORM -->
+            <div id="register-section" class="hidden">
+                <form id="register-form">
+                    <div id="register-error" class="alert alert-error hidden"></div>
+                    
+                    <div class="role-toggle">
+                        <input type="radio" id="role-student" name="reg-role" value="student" checked>
+                        <label for="role-student">Student</label>
+                        <input type="radio" id="role-security" name="reg-role" value="security">
+                        <label for="role-security">Security Guard</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="reg-name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>ID Card Number</label>
+                        <input type="text" id="reg-idcard" class="form-control" required placeholder="College ID / Badge Number">
+                    </div>
+                    <div class="form-group">
+                        <label>Unique Phone Number</label>
+                        <input type="text" id="reg-phone" class="form-control" required placeholder="10-digit number">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="reg-password" class="form-control" required placeholder="Create password">
+                    </div>
+                    <button type="submit" class="btn-primary mt-2">Request Account</button>
+                    <p class="mt-2 text-center" style="font-size: 0.8rem; color: var(--text-muted);">Accounts require admin approval.</p>
+                </form>
+                <div class="text-center mt-3">
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Already registered? <a href="#" id="show-login" class="golden-text" style="text-decoration: none;">Sign In</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

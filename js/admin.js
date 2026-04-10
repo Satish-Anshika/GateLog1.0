@@ -1,0 +1,77 @@
+/* admin.js - Admin Dashboard Logic */
+document.addEventListener('DOMContentLoaded', () => {
+    const currentUser = DB.getCurrentUser();
+    if (!currentUser || currentUser.role !== 'admin') {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        DB.logout();
+    });
+
+    function renderUsers() {
+        const users = DB.getUsers();
+        const pendingContainer = document.getElementById('pending-users-list');
+        const approvedContainer = document.getElementById('approved-users-list');
+        
+        pendingContainer.innerHTML = '';
+        approvedContainer.innerHTML = '';
+
+        let pendingCount = 0;
+
+        users.forEach(user => {
+            if (user.role === 'admin') return; // Don't show admin in these lists
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="flex justify-between align-center mb-1">
+                    <h3 class="golden-text">${user.name}</h3>
+                    <span class="badge ${user.role === 'student' ? 'badge-warning' : 'badge-danger'}">${user.role}</span>
+                </div>
+                <p><strong>Phone:</strong> ${user.phone}</p>
+                <p><strong>ID Card:</strong> ${user.idCard}</p>
+            `;
+
+            if (user.status === 'pending') {
+                pendingCount++;
+                const actions = document.createElement('div');
+                actions.className = 'mt-2 flex justify-between';
+                actions.innerHTML = `
+                    <button class="btn-primary btn-small mr-1" onclick="approveUser('${user.id}')" style="width: 48%;">Approve</button>
+                    <button class="btn-secondary btn-small" onclick="rejectUser('${user.id}')" style="width: 48%; border-color: var(--error); color: var(--error);">Reject</button>
+                `;
+                card.appendChild(actions);
+                pendingContainer.appendChild(card);
+            } else {
+                card.innerHTML += `<p class="mt-1"><span class="badge badge-success">Approved</span></p>`;
+                approvedContainer.appendChild(card);
+            }
+        });
+
+        if (pendingCount === 0) {
+            pendingContainer.innerHTML = '<p class="text-muted">No pending approvals.</p>';
+        }
+    }
+
+    window.approveUser = function(userId) {
+        const users = DB.getUsers();
+        const index = users.findIndex(u => u.id === userId);
+        if (index > -1) {
+            users[index].status = 'approved';
+            DB.setUsers(users);
+            renderUsers();
+        }
+    };
+
+    window.rejectUser = function(userId) {
+        const users = DB.getUsers();
+        const newUsers = users.filter(u => u.id !== userId);
+        DB.setUsers(newUsers);
+        renderUsers();
+    };
+
+    renderUsers();
+});
