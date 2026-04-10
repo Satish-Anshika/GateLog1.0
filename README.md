@@ -138,7 +138,20 @@ GateLog/
 - Mobile app version  
 
 ---
+## Screenshots
+<img width="651" height="773" alt="Screenshot 2026-04-11 003539" src="https://github.com/user-attachments/assets/1c5e2740-0820-4cd1-8923-5d68aedbf411" />
+_Login Page_
 
+<img width="1915" height="857" alt="security page" src="https://github.com/user-attachments/assets/25ed252c-481e-437a-89bb-6b854c946273" />
+_Security Page_
+
+<img width="1919" height="864" alt="lost or found" src="https://github.com/user-attachments/assets/f51d987a-1322-4fda-ab9f-e79183c433ec" />
+_Lost or Found items_
+
+<img width="1911" height="845" alt="parcel verification" src="https://github.com/user-attachments/assets/beeb6b1a-a329-48d9-b039-db455c1c3b22" />
+_Student dashboard_
+
+---
 ## 👤 Author
 
 Satish Anshika  
